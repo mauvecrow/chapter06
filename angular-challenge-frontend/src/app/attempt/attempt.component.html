@@ -1,0 +1,10 @@
+<form [formGroup]="attemptGroup" (ngSubmit)="post()">
+    <label for="attemptInput">Your name: </label>
+    <input type="text" id="attemptInput" formControlName="userAlias">
+    <br />
+    <label for="attemptInput">Your guess: </label>
+    <input type="text" id="attemptInput" formControlName="guess">
+    <br />
+    <button type="submit" [disabled]="!attemptGroup.valid">Submit</button>
+</form>
+<!-- <p>Message: {{message}}</p> -->

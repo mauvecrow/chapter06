@@ -1,0 +1,15 @@
+<div>
+    <button (click)="refresh()">Refresh</button>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Score</th>
+            <th>Badge(s)</th>
+        </tr>
+        <tr *ngFor="let row of updatedRows">
+            <td>{{ row.alias }}</td>
+            <td>{{ row.totalScore }}</td>
+            <td>{{ row.badges }}</td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+<div class="display-column">
+    <div>
+        <h3>Your new challenge is</h3>
+        <div class="challenge">{{randomChallenge.factorA}} x {{randomChallenge.factorB}}</div>
+    </div>
+    <!-- <div *ngIf="solved !== undefined; else responseBlock">
+        <h3>That's correct!</h3>
+    </div> -->
+    <!-- <ng-template #responseBlock>{{ resultMessage }}</ng-template> -->
+    
+</div>
+
+<app-attempt 
+    [factorA]="randomChallenge.factorA" 
+    [factorB]="randomChallenge.factorB" 
+    (result)="checkResponse($event)"></app-attempt>
+
+<div>
+    <h3>{{ resultMessage }}</h3>
+    <button (click)="generateChallenge()">New Challenge</button>
+</div>
+
+<app-leader-board></app-leader-board>
