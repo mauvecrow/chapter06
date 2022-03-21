@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class ChallengeServiceTest {
-
+/* No longer needed since amqp is replacing gameclient
     private ChallengeService challengeService;
 
     @Mock
@@ -118,4 +118,6 @@ public class ChallengeServiceTest {
         // then
         then(latestAttemptsResult).isEqualTo(lastAttempts);
     }
+
+ */
 }

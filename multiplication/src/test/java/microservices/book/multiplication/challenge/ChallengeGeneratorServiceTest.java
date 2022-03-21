@@ -10,14 +10,18 @@ import java.util.Random;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.withSettings;
 
 @ExtendWith(MockitoExtension.class)
 public class ChallengeGeneratorServiceTest {
 
     private ChallengeGeneratorService challengeGeneratorService;
 
-    @Spy
-    private Random random;
+//    @Spy
+//    private Random random;
+    // jdk 17 currently has issues with @Spy
+    private final Random random = mock(Random.class, withSettings().withoutAnnotations());
 
     @BeforeEach
     public void setUp() {

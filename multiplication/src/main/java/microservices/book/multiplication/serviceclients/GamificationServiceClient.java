@@ -3,15 +3,15 @@ package microservices.book.multiplication.serviceclients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.multiplication.challenge.ChallengeAttempt;
-import microservices.book.multiplication.challenge.ChallengeSolvedDTO;
+import microservices.book.multiplication.challenge.ChallengeSolvedEvent;
 
 @Slf4j
-@Service
+//@Service
+// this class is no longer needed since RabbitMq is being used for event-driven architecture
 public class GamificationServiceClient {
 
     private final RestTemplate restTemplate;
@@ -25,7 +25,7 @@ public class GamificationServiceClient {
 
     public boolean sendAttempt(final ChallengeAttempt attempt) {
         try {
-            ChallengeSolvedDTO dto = new ChallengeSolvedDTO(attempt.getId(),
+            ChallengeSolvedEvent dto = new ChallengeSolvedEvent(attempt.getId(),
                     attempt.isCorrect(), attempt.getFactorA(),
                     attempt.getFactorB(), attempt.getUser().getId(),
                     attempt.getUser().getAlias());

@@ -8,6 +8,7 @@ import microservices.book.multiplication.user.UserRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,9 +19,11 @@ public class ChallengeServiceImpl implements ChallengeService {
 
     private final UserRepository userRepository;
     private final ChallengeAttemptRepository attemptRepository;
-    private final GamificationServiceClient gameClient;
+//    private final GamificationServiceClient gameClient; // no longer needed
+    private final ChallengeEventPub challengeEventPub;
 
     @Override
+    @Transactional
     public ChallengeAttempt verifyAttempt(ChallengeAttemptDTO attemptDTO) {
         // Check if the user already exists for that alias, otherwise create it
         User user = userRepository.findByAlias(attemptDTO.getUserAlias())
@@ -49,7 +52,10 @@ public class ChallengeServiceImpl implements ChallengeService {
         ChallengeAttempt storedAttempt = attemptRepository.save(checkedAttempt);
 
         // Sends the attempt to gamification
-        gameClient.sendAttempt(storedAttempt);
+//        gameClient.sendAttempt(storedAttempt);
+
+        // Publishes an event to notify potentially interested subscribers
+        challengeEventPub.challengeSolved(storedAttempt);
 
         return storedAttempt;
     }

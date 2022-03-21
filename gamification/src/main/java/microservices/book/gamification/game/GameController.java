@@ -4,18 +4,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
-import microservices.book.gamification.challenge.ChallengeSolvedDTO;
+import microservices.book.gamification.challenge.ChallengeSolvedEvent;
 
-@RestController
-@RequestMapping("/attempts")
-@RequiredArgsConstructor
+//@RestController
+//@RequestMapping("/attempts")
+//@RequiredArgsConstructor
 public class GameController {
 
-    private final GameService gameService;
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    void postResult(@RequestBody ChallengeSolvedDTO dto) {
-        gameService.newAttemptForUser(dto);
-    }
+//    private final GameService gameService;
+//
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    void postResult(@RequestBody ChallengeSolvedEvent dto) {
+//        gameService.newAttemptForUser(dto);
+//    }
 }
